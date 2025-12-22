@@ -2,6 +2,7 @@ import { Hono } from "hono";
 import { initDatabase } from "./database/db";
 import { corsMiddleware } from "./middlewares/corsMiddleware";
 import { loggerMiddleware } from "./middlewares/loggerMiddleware";
+import authRoutes from "./routes/authRoutes";
 
 const app = new Hono();
 
@@ -11,6 +12,7 @@ const db = initDatabase();
 app.use("*", corsMiddleware);
 app.use("*", loggerMiddleware);
 
+app.route("/auth", authRoutes);
 
 app.get("/", (c) => {
   return c.text("User and Task Management");
