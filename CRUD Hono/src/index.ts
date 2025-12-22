@@ -16,10 +16,10 @@ app.get("/", (c) => {
 
 app.get("/db-connection", (c) => {
   const result = db.query("SELECT sqlite_version()").get();
-  console.log("Databse connected successfully", result);
+  console.log("Database connected successfully", result);
 
   return c.json({
-    message: "Database connected succefully",
+    message: "Database connected successfully",
     sqliteVersion: result,
   });
 });

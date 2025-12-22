@@ -1,6 +1,6 @@
 export type User = {
-  id: String;
-  username: String;
-  password: String;
-  role: "Admin" | "User";
+  id: number;
+  username: string;
+  password: string;
+  role: "admin" | "user";
 };
