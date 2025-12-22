@@ -1,6 +1,6 @@
-# Task Management API Repository
+# SauuceIt API
 
-This repository contains the official backend API for **SauuceHub**, a user and task management system built with **Bun** and **Hono**. It provides secure user authentication, role-based access control, and CRUD operations for tasks, all backed by an **SQLite** database and validated with **Zod**.
+This repository contains the official backend API for **SauuceIt**, a user and task management system built with **Bun** and **Hono**. It provides secure user authentication, role-based access control, and CRUD operations for tasks, all backed by an **SQLite** database and validated with **Zod**.
 
 ---
 
