@@ -11,11 +11,17 @@ app.use("*", cors());
 app.use("*", logger());
 
 app.get("/", (c) => {
-  return c.text("Hello Hono!");
+  return c.text("User and Task Management");
 });
 
-app.get("/home", (c) => {
-  return c.text("Daniel is Home at 2pm!");
+app.get("/db-connection", (c) => {
+  const result = db.query("SELECT sqlite_version()").get();
+  console.log("Databse connected successfully", result);
+
+  return c.json({
+    message: "Database connected succefully",
+    sqliteVersion: result,
+  });
 });
 
 export default app;
