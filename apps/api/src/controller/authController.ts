@@ -3,6 +3,8 @@ import { Context } from "hono";
 import { Database } from "bun:sqlite";
 import { User } from "../types";
 import { password as bunPassword } from "bun";
+import { sign } from "hono/jwt";
+import { use } from "hono/jsx";
 
 export async function RegisterUser(c: Context, db: Database) {
   const { username, password, role = "user" } = await c.req.json();
@@ -57,6 +59,7 @@ export async function RegisterUser(c: Context, db: Database) {
   }
 }
 
+// Login User
 export async function LoginUser(c: Context, db: Database) {
   const { username, password } = await c.req.json();
 
@@ -91,13 +94,18 @@ export async function LoginUser(c: Context, db: Database) {
       });
     }
 
+    const token = await sign(
+      { userId: user?.id, role: user?.role },
+      process.env.JWT_SECRET || "JWT_SECRET"
+    );
+
     return c.json(
       {
         message: "Login in Successfully",
+        token: token,
       },
       200
     );
-    
   } catch (error) {
     console.log(error);
     return c.json(
